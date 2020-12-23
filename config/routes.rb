@@ -26,7 +26,10 @@ Rails.application.routes.draw do
   # Do not nest member routes
   #resources :decks, only: [:show, :create, :update, :destroy] # member routes
 
-
+  namespace :api, defaults: {format: :json} do
+    resource :user, only: [:index, :new, :create, :show]
+    resource :session, only: [:new, :create, :destroy]
+  end
 
   # Specify the controller action that Rails
   # should run for GET /

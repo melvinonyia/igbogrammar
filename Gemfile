@@ -60,6 +60,7 @@ group :development do
 
   # pry > irb
   gem 'pry-rails'
+  gem 'letter_opener'
 end
 
 group :test do
