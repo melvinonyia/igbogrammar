@@ -15,12 +15,14 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  # Set cookie in browser to match user's session token
   def login(user)
     user.reset_session_token!
     session[:session_token] = user.session_token
     @current_user = user
   end
 
+  # Set cookie to nil
   def logout
     current_user.reset_session_token!
     session[:session_token] = nil

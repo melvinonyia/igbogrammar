@@ -1,13 +1,17 @@
 class Api::SessionsController < ApplicationController
 
-  # login
-  def create
-    # POST /session
+  # Start session (login)
+  def create # POST /session
+
+    # Query Active Record to find user from params passed in.
     @user = User.find_by_credentials(
-      params[:user][:email],
-      params[:user][:password]
+      #params[:user][:username],
+      #params[:user][:password]
+      params.dig(:user, :username),
+      params.dig(:user, :password)
     )
 
+    # Log user in, if they exist.
     if @user
       login(@user)
       render "api/users/show"
@@ -16,9 +20,8 @@ class Api::SessionsController < ApplicationController
     end
   end
 
-  # logout
-  def destroy
-    # DELETE /session
+  # End session (logout)
+  def destroy  # DELETE /session
     @user = current_user
     if @user
       logout
@@ -27,4 +30,5 @@ class Api::SessionsController < ApplicationController
       render json: ["Nobody sign in"], status: 404
     end
   end
+
 end

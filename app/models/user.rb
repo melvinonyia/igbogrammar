@@ -2,37 +2,29 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  ##
   # Validations
-  validates :activation_token, :email, uniqueness: true
+  ##
+
+  validates :username, uniqueness: true
   validates :password, length: { minimum: 6 }, allow_nil: true
-  validates :email,
+  validates :username,
             :password_digest,
             :session_token,
-            :activation_token,
             presence: true
 
   after_initialize :ensure_session_token
-  after_initialize :set_activation_token
-
-  #has_many :reviews,
-  #  foreign_key: :author_id
-
-  #has_many :favorites
-  #has_many :favorite_benches,
-  #  through: :favorites,
-  #  source: :bench
 
   # Find user
-  def self.find_by_credentials(email, password)
-    user = User.find_by(email: email)
+  def self.find_by_credentials(username, password)
+    user = User.find_by(username: username)
     return nil unless user
     user.is_password?(password) ? user : nil
   end
 
-  # Activation Token
-  def set_activation_token
-    self.activation_token = generate_unique_activation_token
-  end
+  ##
+  # Password
+  ##
 
   # Create password
   def password=(password)
@@ -45,7 +37,10 @@ class User < ApplicationRecord
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
+  ##
   # Session Token
+  ##
+
   def reset_session_token!
     generate_unique_session_token
     save!
@@ -74,21 +69,6 @@ class User < ApplicationRecord
     end
 
     self.session_token
-  end
-
-  ##
-  # This method is for the mailer!
-  ##
-  def generate_unique_activation_token
-    token = SecureRandom.urlsafe_base64(16)
-    while self.class.exists?(activation_token: token)
-      token = SecureRandom.urlsafe_base64(16)
-    end
-    token
-  end
-
-  def activate!
-    self.update_attribute(:activated, true)
   end
 
 end
