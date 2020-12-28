@@ -2,13 +2,10 @@ class Api::SessionsController < ApplicationController
 
   # Start session (login)
   def create # POST /session
-
     # Query Active Record to find user from params passed in.
     @user = User.find_by_credentials(
-      #params[:user][:username],
-      #params[:user][:password]
-      params.dig(:user, :username),
-      params.dig(:user, :password)
+      params[:user][:username],
+      params[:user][:password]
     )
 
     # Log user in, if they exist.
