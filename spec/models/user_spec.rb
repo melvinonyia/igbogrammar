@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   subject(:user) do
     FactoryBot.build(:user,
-      username: "chinedu",
+      username: "testing_username",
       password: "good_password")
   end
 
@@ -51,11 +51,11 @@ RSpec.describe User, type: :model do
     before { user.save! }
 
     it "returns user given good credentials" do
-      expect(User.find_by_credentials("chinedu", "good_password")).to eq(user)
+      expect(User.find_by_credentials("testing_username", "good_password")).to eq(user)
     end
 
     it "returns nil given bad credentials" do
-      expect(User.find_by_credentials("chinedu", "bad_password")).to eq(nil)
+      expect(User.find_by_credentials("testing_username", "bad_password")).to eq(nil)
     end
   end
 end
