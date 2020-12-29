@@ -1,4 +1,13 @@
+
+##
+#
+# Sessions Controller
+#
+##
+
 class Api::SessionsController < ApplicationController
+
+  skip_before_action :verify_authenticity_token, :only => [:create, :destroy]
 
   # Start session (login)
   def create # POST /session
@@ -18,14 +27,14 @@ class Api::SessionsController < ApplicationController
   end
 
   # End session (logout)
-  def destroy  # DELETE /session
+  def destroy # DELETE /session
     @user = current_user
     if @user
       logout
-      render "api/users/show"
+      # render "api/users/show"
+      render json: ["Out"], status: 200
     else
-      render json: ["Nobody sign in"], status: 404
+      render json: ["Nobody signed in"], status: 404
     end
   end
-
 end

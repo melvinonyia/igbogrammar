@@ -1,3 +1,10 @@
+
+##
+#
+# User Model
+#
+##
+
 class User < ApplicationRecord
 
   attr_reader :password
@@ -6,12 +13,13 @@ class User < ApplicationRecord
   # Validations
   ##
 
-  validates :username, uniqueness: true
-  validates :password, length: { minimum: 6 }, allow_nil: true
   validates :username,
             :password_digest,
             :session_token,
             presence: true
+  validates :username, uniqueness: true
+  validates :password, length: { minimum: 6 }, allow_nil: true
+
 
   after_initialize :ensure_session_token
 
@@ -67,7 +75,6 @@ class User < ApplicationRecord
     while User.find_by(session_token: self.session_token)
       self.session_token = new_session_token
     end
-
     self.session_token
   end
 

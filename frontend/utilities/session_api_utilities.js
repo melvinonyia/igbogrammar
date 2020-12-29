@@ -1,3 +1,11 @@
+
+////
+//
+// Session API Utilities
+//
+////
+
+// Login API
 export const login = user => (
   $.ajax({
     method: 'POST',
@@ -6,6 +14,7 @@ export const login = user => (
   })
 );
 
+// Signup API
 export const signup = user => (
   $.ajax({
     method: 'POST',
@@ -14,6 +23,7 @@ export const signup = user => (
   })
 );
 
+// Logout API
 export const logout = () => (
   $.ajax({
     method: 'DELETE',
