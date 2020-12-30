@@ -9,7 +9,7 @@ class Api::UsersController < ApplicationController
 
   skip_before_action :verify_authenticity_token, :only => :create
 
-  # Signup user
+  # Signup/Register user
   def create # POST /users
     @user = User.new(user_params)
 
@@ -27,4 +27,5 @@ class Api::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :password)
   end
+  
 end
