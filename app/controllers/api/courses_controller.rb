@@ -1,7 +1,7 @@
 
 ##
 #
-# Course Controller
+# Courses Controller
 #
 ##
 
@@ -9,7 +9,7 @@ class Api::CoursesController < ApplicationController
 
   before_action :require_user!
 
-  skip_before_action :verify_authenticity_token, :only => [:create, :destroy]
+  skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
 
   # Course index
   def index # GET /courses
@@ -48,11 +48,12 @@ class Api::CoursesController < ApplicationController
     render :edit
   end
 
-  #
-  def update
+  # Edit course
+  def update # PATCH /course?id=1
     @course = Course.find(params[:id])
     if @course.update(course_params)
-      redirect_to course_url(@course)
+      #redirect_to course_url(@course)
+      render json: ["Patched course"], status: 200
     else
       flash.now[:errors] = @course.errors.full_messages
       render :edit
@@ -64,7 +65,7 @@ class Api::CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.destroy
     #redirect_to course_url
-    render json: ["Gone"], status: 200
+    render json: ["Course is gone"], status: 200
   end
 
   private

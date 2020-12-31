@@ -5,9 +5,26 @@ Rails.application.routes.draw do
   # DSL (domain specific language)
 
   namespace :api, defaults: {format: :json} do
-    resource :course, only: [:index, :show, :create, :edit, :update, :destroy]
-    resource :user, only: [:index, :new, :create, :show]
+
+    # Session routes
     resource :session, only: [:new, :create, :destroy]
+
+    # User routes
+    resources :users, only: [:index, :new, :create, :show]
+
+    # Course routes
+    resources :courses, only: [:index, :show, :create, :edit, :update, :destroy] do
+      resources :decks, only: [:new]
+    end
+
+    # Deck routes
+    resources :decks, only: [:index, :show, :create, :edit, :update, :destroy] do
+      resources :cards, only: [:new]
+    end
+
+    # Card routes
+    resources :cards, only: [:index, :show, :create, :edit, :update, :destroy]
+
   end
 
   # Specify the controller action that Rails

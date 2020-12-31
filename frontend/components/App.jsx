@@ -15,8 +15,8 @@ import {
 } from 'react-router-dom';
 
 import GreetingContainer from "./Greeting/greeting_container";
-import SignUpFormContainer from './Forms/signup_form_container';
-import LogInFormContainer from './Forms/login_form_container';
+import SignUpFormContainer from './Session/signup_form_container';
+import LogInFormContainer from './Session/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../utilities/route_utilities';
 
 const App = () => (
