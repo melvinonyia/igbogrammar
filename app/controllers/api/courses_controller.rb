@@ -49,7 +49,7 @@ class Api::CoursesController < ApplicationController
   end
 
   # Edit course
-  def update # PATCH /course?id=1
+  def update # PATCH /courses?id=1
     @course = Course.find(params[:id])
     if @course.update(course_params)
       #redirect_to course_url(@course)

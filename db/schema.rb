@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_12_31_061901) do
     t.string "question", null: false
     t.string "answer", null: false
     t.integer "deck_id", null: false
-    t.index ["deck_id"], name: "index_cards_on_deck_id", unique: true
+    t.index ["deck_id"], name: "index_cards_on_deck_id"
   end
 
   create_table "courses", force: :cascade do |t|

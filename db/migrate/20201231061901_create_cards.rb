@@ -6,6 +6,6 @@ class CreateCards < ActiveRecord::Migration[5.2]
       t.integer :deck_id, null: false
     end
 
-    add_index :cards, :deck_id, unique: true
+    add_index :cards, :deck_id
   end
 end

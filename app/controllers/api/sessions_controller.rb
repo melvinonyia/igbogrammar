@@ -32,9 +32,9 @@ class Api::SessionsController < ApplicationController
     if @user
       logout
       # render "api/users/show"
-      render json: ["Out"], status: 200
+      render json: ["User logged out"], status: 200
     else
-      render json: ["Nobody signed in"], status: 404
+      render json: ["Nobody logged in"], status: 404
     end
   end
 end
