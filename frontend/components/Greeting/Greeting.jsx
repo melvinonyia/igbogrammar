@@ -1,8 +1,9 @@
-/*
 
-Greeting Presentational Component
-
-*/
+////
+//
+// Greeting Presentational Component
+//
+////
 
 import React from 'react';
 import { Link } from 'react-router-dom';

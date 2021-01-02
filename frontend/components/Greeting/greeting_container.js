@@ -1,8 +1,9 @@
-/*
 
-Greeting Container Component
-
-*/
+////
+//
+// Greeting Container Component
+//
+////
 
 import { connect } from 'react-redux';
 
@@ -10,7 +11,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 
 // Presentational component to connect
-import Greeting from './Greeting';
+import Greeting from './greeting';
 
 // Map slice of state to props object
 const mapStateToProps = ({ session, entities: { users } }) => {

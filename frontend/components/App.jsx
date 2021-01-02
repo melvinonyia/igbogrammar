@@ -1,3 +1,4 @@
+
 ////
 //
 // App Component
@@ -14,9 +15,12 @@ import {
   HashRouter
 } from 'react-router-dom';
 
-import GreetingContainer from "./Greeting/greeting_container";
-import SignUpFormContainer from './Session/signup_form_container';
-import LogInFormContainer from './Session/login_form_container';
+import GreetingContainer from "./greeting/greeting_container";
+import SignUpFormContainer from './session_form/signup_form_container';
+import LogInFormContainer from './session_form/login_form_container';
+import CourseListContainer from './course/course_list/course_list_container';
+import CourseShowContainer from './course/course_show/course_show_container';
+import CourseFormContainer from './course/course_form/course_form_container';
 import { AuthRoute, ProtectedRoute } from '../utilities/route_utilities';
 
 const App = () => (
@@ -30,7 +34,12 @@ const App = () => (
     <Switch>
       <AuthRoute exact path="/login" component={LogInFormContainer} />
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+      <ProtectedRoute exact path="/courses/new" component={CourseFormContainer} />
+      <ProtectedRoute path="/courses" component={CourseListContainer} />
+      <ProtectedRoute path="/courses/:courseId" component={CourseShowContainer} />
+      <Route exact path="/" component={CourseListContainer} />
     </Switch>
-  </div>);
+  </div>
+);
 
 export default App;

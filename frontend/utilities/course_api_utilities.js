@@ -5,28 +5,49 @@
 //
 ////
 
-// Login API
+// Course index API
 export const fetchCourses = data => (
   $.ajax({
-    method: 'POST',
-    url: '/api/session',
-    data: { user }
+    method: 'GET',
+    url: '/api/courses',
+    data
   })
 );
 
-// Signup API
+// Show individual course API
 export const fetchCourse = id => (
   $.ajax({
-    method: 'POST',
-    url: '/api/user',
-    data: { user }
+    method: 'GET',
+    url: '/api/courses/${id}'
   })
 );
 
-// Logout API
-export const logout = () => (
+// Create course API
+export const createCourse = courseForm => (
+  $.ajax({
+    method: 'POST',
+    url: '/api/courses',
+    data: courseForm,
+    contentType: false,
+    processData: false
+  })
+);
+
+// Edit course API
+export const editCourse = courseForm => (
+  $.ajax({
+    method: 'PATCH',
+    url: '/api/courses/${id}',
+    data: courseForm,
+    contentType: false,
+    processData: false
+  })
+);
+
+// Delete course API
+export const deleteCourse = () => (
   $.ajax({
     method: 'DELETE',
-    url: '/api/session'
+    url: '/api/courses/${id}'
   })
 );
