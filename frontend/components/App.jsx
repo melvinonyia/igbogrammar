@@ -6,7 +6,7 @@
 ////
 
 import React from "react";
-import { Provider } from 'react-redux';
+//import { Provider } from 'react-redux';
 import {
   Route,
   Redirect,
@@ -16,8 +16,8 @@ import {
 } from 'react-router-dom';
 
 import GreetingContainer from "./greeting/greeting_container";
-import SignUpFormContainer from './session_form/signup_form_container';
-import LogInFormContainer from './session_form/login_form_container';
+import SignUpFormContainer from './session/session_form/signup_form_container';
+import LogInFormContainer from './session/session_form/login_form_container';
 import CourseListContainer from './course/course_list/course_list_container';
 import CourseShowContainer from './course/course_show/course_show_container';
 import CourseFormContainer from './course/course_form/course_form_container';
@@ -37,7 +37,7 @@ const App = () => (
       <ProtectedRoute exact path="/courses/new" component={CourseFormContainer} />
       <ProtectedRoute path="/courses" component={CourseListContainer} />
       <ProtectedRoute path="/courses/:courseId" component={CourseShowContainer} />
-      <Route exact path="/" component={CourseListContainer} />
+      <ProtectedRoute exact path="/" component={CourseListContainer} />
     </Switch>
   </div>
 );

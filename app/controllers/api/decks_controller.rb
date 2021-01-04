@@ -13,7 +13,7 @@ class Api::DecksController < ApplicationController
 
   # Deck index
   def index # GET /deck
-    @deck = Deck.all
+    @decks = Deck.all
     render :index
   end
 

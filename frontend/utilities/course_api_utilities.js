@@ -34,7 +34,7 @@ export const createCourse = courseForm => (
 );
 
 // Edit course API
-export const editCourse = courseForm => (
+export const updateCourse = courseForm => (
   $.ajax({
     method: 'PATCH',
     url: '/api/courses/${id}',
@@ -45,7 +45,7 @@ export const editCourse = courseForm => (
 );
 
 // Delete course API
-export const deleteCourse = () => (
+export const destroyCourse = () => (
   $.ajax({
     method: 'DELETE',
     url: '/api/courses/${id}'

@@ -7,11 +7,24 @@
 
 import React from 'react';
 
-const CourseListItem = ({ course }) => (
-	<div className="course-list-item">
-		<h3>{course.name}</h3>
-		<span>{course.description}</span>
-	</div>
-);
+class CourseListItem extends React.Component {
+
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+
+		const course = this.props.course;
+
+		return(
+			<li className="course-list-item">
+				<h3 className='course-item-name'>{course.name}</h3>
+				<span className='course-item-description'>{course.description}</span>
+			</li>
+		);
+	}
+
+};
 
 export default CourseListItem;

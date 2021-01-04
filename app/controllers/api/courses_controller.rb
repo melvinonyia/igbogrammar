@@ -13,7 +13,7 @@ class Api::CoursesController < ApplicationController
 
   # Course index
   def index # GET /courses
-    @course = Course.all
+    @courses = Course.all
     render :index
   end
 

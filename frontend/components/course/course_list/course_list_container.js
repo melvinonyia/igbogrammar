@@ -6,11 +6,15 @@
 ////
 
 import { connect } from 'react-redux';
+
+// Actions
 import { fetchCourses } from '../../../actions/course_actions'; // action creator
+
+// Components
 import CourseList from './course_list'; // presentational component to connect
 
-const mapStateToProps = (state) => ({ // map slice of state to props object
-	items: state.items
+const mapStateToProps = state => ({
+	courses: state.courses
 });
 
 const mapDispatchToProps = dispatch => ({ // create action dispatcher

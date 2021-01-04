@@ -5,7 +5,7 @@
 //
 ////
 
-import * as APIUtilities from '../utilities/course_api_utilities';
+import * as CourseAPIUtilities from '../utilities/course_api_utilities';
 
 ////
 // Action Types
@@ -13,55 +13,67 @@ import * as APIUtilities from '../utilities/course_api_utilities';
 
 export const RECEIVE_COURSES = 'RECEIVE_COURSES';
 export const RECEIVE_COURSE = 'RECEIVE_COURSE';
+export const REMOVE_COURSE = "REMOVE_COURSE";
 
 
 ////
-// Regular action creators
+// Regular action creators which return objects
 ////
 
-// Accept courses object
+// Accepts courses
 export const receiveCourses = courses => ({
   type: RECEIVE_COURSES,
   courses
 });
 
-// Accept a course argument
+// Accept a course
 export const receiveCourse = ({ course }) => ({
   type: RECEIVE_COURSE,
   course
 });
 
+// Accept a course
+export const removeCourse = ({ course }) => ({
+  type: REMOVE_COURSE,
+  course
+});
+
 
 ////
-// Thunk action creators
+// Thunk async action creators which return functions
 ////
 
-export const fetchCourses = filters => dispatch => (
-  APIUtilities.fetchCourses(filters).then(courses => (
+//
+export const fetchCourses = () => dispatch => (
+  CourseAPIUtilities.fetchCourses().then(courses => (
     dispatch(receiveCourses(courses))
   ))
 );
 
+//
 export const fetchCourse = id => dispatch => (
-  APIUtilities.fetchCourse(id).then(payload => (
-    dispatch(receiveCourse(payload))
+  CourseAPIUtilities.fetchCourse(id).then(course => (
+    dispatch(receiveCourse(course))
   ))
 );
 
+//
 export const createCourse = course => dispatch => (
-  APIUtilities.createCourse(course).then(course => (
+  CourseAPIUtilities.createCourse(course).then(course => (
     dispatch(receiveCourse(course))
   ))
 );
 
-export const editCourse = course => dispatch => (
-  APIUtilities.editCourse(course).then(course => (
+//
+export const updateCourse = course => dispatch => (
+  CourseAPIUtilities.updateCourse(course).then(course => (
     dispatch(receiveCourse(course))
   ))
 );
 
+//
 export const deleteCourse = course => dispatch => (
-  APIUtilities.deleteCourse(course).then(course => (
-    dispatch(receiveCourse(course))
+  CourseAPIUtilities.destroyCourse(course).then(course => (
+    dispatch(removeCourse(course))
   ))
 );

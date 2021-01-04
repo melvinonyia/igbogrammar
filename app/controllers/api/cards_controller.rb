@@ -13,7 +13,7 @@ class Api::CardsController < ApplicationController
 
   # Card index
   def index # GET /card
-    @card = Card.all
+    @cards = Card.all
     render :index
   end
 
