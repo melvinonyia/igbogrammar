@@ -7,17 +7,31 @@
 
 import { connect } from 'react-redux';
 
-// Actions
+// Redux
 import { fetchCourses } from '../../../actions/course_actions'; // action creator
 
 // Components
 import CourseList from './course_list'; // presentational component to connect
 
-const mapStateToProps = state => ({
-	courses: state.courses
-});
+const mapStateToProps = ({ state, entities: { courses } }) => {
+	return {
+		courses: courses.allIds
+	};
+};
 
-const mapDispatchToProps = dispatch => ({ // create action dispatcher
+/*
+const mapStateToProps = ({ state, entities: { courses } }) => {
+	return {
+		courses: state.courses,
+	};
+};
+*/
+
+// component will receive: props.a, props.todos, and props.filter
+
+const mapDispatchToProps = dispatch => ({
+
+	// create action dispatcher
 	fetchCourses: () => dispatch(fetchCourses())
 });
 

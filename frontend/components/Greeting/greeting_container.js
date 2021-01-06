@@ -7,10 +7,10 @@
 
 import { connect } from 'react-redux';
 
-// Action creator
+// Redux
 import { logout } from '../../actions/session_actions';
 
-// Presentational component to connect
+// Components
 import Greeting from './greeting';
 
 // Map slice of state to props object

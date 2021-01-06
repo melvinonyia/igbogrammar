@@ -9,11 +9,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// Components
-import Root from "./components/root";
-
 // Redux
 import configureStore from './store/store';
+
+// Components
+import Root from "./components/root";
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
