@@ -23,19 +23,19 @@ export const REMOVE_COURSE = "REMOVE_COURSE";
 // Accepts courses
 export const receiveCourses = courses => ({
   type: RECEIVE_COURSES,
-  courses
-});
+  payload: courses,
+})
 
 // Accept a course
 export const receiveCourse = ({ course }) => ({
   type: RECEIVE_COURSE,
-  course
+  payload: course
 });
 
 // Accept a course
 export const removeCourse = ({ course }) => ({
   type: REMOVE_COURSE,
-  course
+  payload: course
 });
 
 
